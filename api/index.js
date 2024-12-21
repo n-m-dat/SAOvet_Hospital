@@ -1,6 +1,7 @@
 import express from "express";
 import mongoose from "mongoose";
 import dotenv from "dotenv";
+import cors from "cors";
 import userRoutes from "./routes/user.route.js";
 import authRoutes from "./routes/auth.route.js";
 import postRoutes from "./routes/post.route.js";
@@ -22,11 +23,21 @@ mongoose
 
 const app = express();
 
+const corsOptions = {
+  origin: process.env.FRONTEND_URL,
+  methods: ["GET", "POST", "PUT", "DELETE"],
+  allowedHeaders: ["Content-Type", "Authorization"],
+  credentials: true,
+};
+
+const port = process.env.PORT || 8800;
+
+app.use(cors(corsOptions));
 app.use(express.json());
 app.use(cookieParser());
 
-app.listen(8800, () => {
-  console.log("Server is running on port 8800");
+app.listen(port, () => {
+  console.log(`Server is running on port ${port}`);
 });
 
 app.use("/api/user", userRoutes);
@@ -34,7 +45,7 @@ app.use("/api/auth", authRoutes);
 app.use("/api/post", postRoutes);
 app.use("/api/product", productRoutes);
 app.use("/api/service", serviceRoutes);
-app.use('/api/appointment', appointmentRoutes);
+app.use("/api/appointment", appointmentRoutes);
 
 //MIDDLEWARE
 app.use((err, req, res, next) => {
