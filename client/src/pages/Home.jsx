@@ -5,6 +5,7 @@ import ProductCard from "../components/ProductCard";
 import HomeCarousel from "../components/HomeCarousel";
 import Footer from "../components/Footer";
 import HomeServices from "../components/HomeServices";
+import YouTubeVideo from "../components/YouTube/YouTubeVideo";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -27,6 +28,9 @@ const Home = () => {
 
         {/*----- SERVICES MENU -----*/}
         <HomeServices />
+
+        {/*----- VIDEO -----*/}
+        <YouTubeVideo videoId="6PwbhVq7pzY" />
 
         {/*-----PRODUCTS-----*/}
         <div className="w-full flex justify-center">
