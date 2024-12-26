@@ -12,7 +12,9 @@ const Home = () => {
 
   useEffect(() => {
     const fetchProducts = async () => {
-      const res = await fetch(`/api/product/getProducts?limit=8`);
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/product/getProducts?limit=8`
+      );
       const data = await res.json();
       setProducts(data.products);
     };
