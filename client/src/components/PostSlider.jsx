@@ -61,7 +61,7 @@ const PostSlider = () => {
   };
 
   return (
-    <div className="w-full flex justify-center">
+    <div className="w-full flex justify-center mt-10">
       <div className="max-w-5xl w-full h-max flex flex-col gap-5">
         <p className="text-center text-3xl text-blue-800 font-semibold">
           Bài viết mới nhất

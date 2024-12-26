@@ -5,7 +5,7 @@ import ProductCard from "../components/ProductCard";
 import HomeCarousel from "../components/HomeCarousel";
 import Footer from "../components/Footer";
 import HomeServices from "../components/HomeServices";
-import YouTubeVideo from "../components/YouTube/YouTubeVideo";
+import HomeVideo from "../components/YouTube/HomeVideo";
 
 const Home = () => {
   const [products, setProducts] = useState([]);
@@ -30,10 +30,10 @@ const Home = () => {
         <HomeServices />
 
         {/*----- VIDEO -----*/}
-        <YouTubeVideo videoId="6PwbhVq7pzY" />
+        <HomeVideo videoId="6PwbhVq7pzY" />
 
         {/*-----PRODUCTS-----*/}
-        <div className="w-full flex justify-center">
+        <div className="w-full flex justify-center mt-10">
           <div className="max-w-5xl w-full">
             {products && products.length > 0 && (
               <div className="flex flex-col gap-6">

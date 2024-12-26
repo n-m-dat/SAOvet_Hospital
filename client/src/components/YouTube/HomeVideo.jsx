@@ -1,4 +1,4 @@
-const YouTubeVideo = ({ videoId }) => {
+const HomeVideo = ({ videoId }) => {
   return (
     <div className="w-full flex justify-center">
       <div className="max-w-5xl w-full flex gap-10">
@@ -25,10 +25,12 @@ const YouTubeVideo = ({ videoId }) => {
             đội ngũ bác sĩ chuyên nghiệp, đảm bảo thú cưng của bạn luôn khỏe
             mạnh và hạnh phúc.
           </p>
+          <br/>
+          <span className="text-lg border bg-green-600 text-white rounded-full py-2 px-5">Chỉ từ 399k / năm</span>
         </div>
       </div>
     </div>
   );
 };
 
-export default YouTubeVideo;
+export default HomeVideo;
