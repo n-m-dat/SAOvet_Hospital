@@ -28,8 +28,7 @@ const corsOptions = {
   credentials: true,
 };
 
-
-const port = process.env.PORT || 8800;
+const port = process.env.PORT;
 
 app.use(cors(corsOptions));
 app.use(express.json());
