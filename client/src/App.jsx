@@ -1,4 +1,4 @@
-import { BrowserRouter, Route, Routes, useLocation } from "react-router-dom";
+import { BrowserRouter, Route, Routes } from "react-router-dom";
 
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -8,7 +8,6 @@ import Contact from "./pages/Contact";
 import CartDetail from "./pages/CartDetail";
 import Register from "./pages/Register";
 import Manage from "./pages/Manage";
-import ChatBox from "./components/ChatBox";
 
 import CreatePost from "./pages/Post/CreatePost";
 import UpdatePost from "./pages/Post/UpdatePost";
@@ -28,35 +27,11 @@ import ServiceDetail from "./pages/Service/ServiceDetail";
 import MyAppointment from "./pages/MyAppointment";
 import AdminAppointment from "./pages/AdminAppointment";
 
-const ChatBoxWrapper = () => {
-  const location = useLocation();
 
-  // Các đường dẫn không hiển thị chat box
-  const noChatBoxPaths = [
-    "/login",
-    "/register",
-    "/manage",
-    "/cart",
-    "/admin-appointments",
-    "/create-post",
-    "update-post",
-    "/create-product",
-    "/update-product",
-    "/create-service",
-    "/update-service",
-  ];
-
-  if (noChatBoxPaths.includes(location.pathname)) {
-    return null;
-  }
-
-  return <ChatBox />;
-};
 
 const App = () => {
   return (
     <BrowserRouter>
-      <ChatBoxWrapper />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/services" element={<Services />} />
