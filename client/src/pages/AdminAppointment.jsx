@@ -11,7 +11,9 @@ const AdminAppointment = () => {
 
   const fetchAppointments = async () => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/appointments-admin`);
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/appointments-admin`
+      );
       const data = await res.json();
       if (res.ok) {
         // Sắp xếp cuộc hẹn theo ngày và giờ
@@ -39,13 +41,16 @@ const AdminAppointment = () => {
     if (!selectedAppointmentId) return;
 
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/cancel-appointment-admin`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ appointmentId: selectedAppointmentId }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/cancel-appointment-admin`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ appointmentId: selectedAppointmentId }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         toast.success(data.message);
@@ -59,13 +64,17 @@ const AdminAppointment = () => {
 
   const completeAppointment = async (appointmentId) => {
     try {
-      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/user/complete-appointment`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({ appointmentId }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/complete-appointment`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({ appointmentId }),
+          credentials: "include",
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         toast.success(data.message);

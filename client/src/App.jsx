@@ -27,8 +27,6 @@ import ServiceDetail from "./pages/Service/ServiceDetail";
 import MyAppointment from "./pages/MyAppointment";
 import AdminAppointment from "./pages/AdminAppointment";
 
-
-
 const App = () => {
   return (
     <BrowserRouter>
