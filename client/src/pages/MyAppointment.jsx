@@ -42,6 +42,7 @@ const MyAppointment = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ appointmentId }),
+          credentials: "include",
         }
       );
       const data = await res.json();
