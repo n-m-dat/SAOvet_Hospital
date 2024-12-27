@@ -38,6 +38,12 @@ const ChatBoxWrapper = () => {
     "/manage",
     "/cart",
     "/admin-appointments",
+    "/create-post",
+    "update-post",
+    "/create-product",
+    "/update-product",
+    "/create-service",
+    "/update-service",
   ];
 
   if (noChatBoxPaths.includes(location.pathname)) {

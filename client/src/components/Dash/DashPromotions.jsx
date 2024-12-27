@@ -35,7 +35,10 @@ const DashPromotions = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          `/api/product/getproducts?userId=${currentUser._id}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?userId=${
+            currentUser._id
+          }`,
+          { method: "GET", credentials: "include" }
         );
         const data = await res.json();
         if (res.ok) {
@@ -62,20 +65,24 @@ const DashPromotions = () => {
 
     setShowDiscountModal(false);
     try {
-      const res = await fetch(`/api/product/adjust-discount`, {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-        },
-        body: JSON.stringify({
-          discount,
-          category: selectedCategory || undefined,
-          brand: selectedBrand || undefined,
-          pet: selectedPet || undefined,
-          startDate,
-          endDate,
-        }),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/product/adjust-discount`,
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            discount,
+            category: selectedCategory || undefined,
+            brand: selectedBrand || undefined,
+            pet: selectedPet || undefined,
+            startDate,
+            endDate,
+          }),
+          credentials: "include",
+        }
+      );
 
       const data = await res.json();
       if (!res.ok) {
@@ -83,7 +90,10 @@ const DashPromotions = () => {
       } else {
         alert(data.message); // Hiển thị thông báo thành công
         const updatedProducts = await fetch(
-          `/api/product/getproducts?userId=${currentUser._id}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?userId=${
+            currentUser._id
+          }`,
+          { method: "GET", credentials: "include" }
         ).then((res) => res.json());
         setUserProducts(updatedProducts.products);
         setFilteredProducts(updatedProducts.products);
@@ -97,9 +107,12 @@ const DashPromotions = () => {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();

@@ -34,7 +34,7 @@ const ProductDetail = () => {
     const fetchProduct = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/product/getproducts?slug=${productSlug}`);
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?slug=${productSlug}`);
         const data = await res.json();
         if (!res.ok) {
           setError(true);
@@ -59,7 +59,7 @@ const ProductDetail = () => {
   useEffect(() => {
     try {
       const fetchRecentProducts = async () => {
-        const res = await fetch("/api/product/getproducts?limit=3");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?limit=3`);
         const data = await res.json();
         if (res.ok) {
           setRecentProducts(data.products);

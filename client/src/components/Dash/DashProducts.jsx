@@ -18,7 +18,10 @@ const DashProducts = () => {
     const fetchProducts = async () => {
       try {
         const res = await fetch(
-          `/api/product/getproducts?userId=${currentUser._id}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?userId=${
+            currentUser._id
+          }`,
+          { method: "GET", credentials: "include" }
         );
         const data = await res.json();
         if (res.ok) {
@@ -38,9 +41,12 @@ const DashProducts = () => {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/product/deleteproduct/${productIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();

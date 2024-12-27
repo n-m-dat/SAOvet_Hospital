@@ -10,7 +10,7 @@ const Services = () => {
 
   useEffect(() => {
     const fetchServices = async () => {
-      const res = await fetch(`/api/service/getservices`);
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/service/getservices`);
       const data = await res.json();
       setServices(data.services);
     };

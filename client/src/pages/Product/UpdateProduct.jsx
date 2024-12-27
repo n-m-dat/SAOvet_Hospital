@@ -29,7 +29,10 @@ const UpdateProduct = () => {
     try {
       const fetchProduct = async () => {
         const res = await fetch(
-          `/api/product/getproducts?productId=${productId}`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/product/getproducts?productId=${productId}`,
+          { method: "GET", credentials: "include" }
         );
         const data = await res.json();
         if (!res.ok) {
@@ -107,13 +110,16 @@ const UpdateProduct = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/product/updateproduct/${productId}/${currentUser._id}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/product/updateproduct/${productId}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
+          credentials: "include",
         }
       );
       const data = await res.json();

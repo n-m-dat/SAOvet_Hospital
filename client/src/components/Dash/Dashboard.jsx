@@ -36,7 +36,10 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchDashboardData = async () => {
       try {
-        const res = await fetch("/api/user/dashboard");
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/user/dashboard`,
+          { method: "GET", credentials: "include" }
+        );
         const data = await res.json();
         if (res.ok) {
           setDashboardData(data.dashData);
@@ -51,7 +54,10 @@ const Dashboard = () => {
 
   const fetchRevenue = async () => {
     try {
-      const res = await fetch("/api/user/revenue");
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/revenue`,
+        { method: "GET", credentials: "include" }
+      );
       const data = await res.json();
       if (res.ok) {
         setRevenue(data.revenue);
@@ -68,7 +74,10 @@ const Dashboard = () => {
   useEffect(() => {
     const fetchQuarterlyRevenue = async () => {
       try {
-        const res = await fetch("/api/user/quarterly-revenue");
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/user/quarterly-revenue`,
+          { method: "GET", credentials: "include" }
+        );
         const data = await res.json();
         if (res.ok) {
           setQuarterlyRevenue(data.quarterlyRevenue);
@@ -84,7 +93,10 @@ const Dashboard = () => {
   const fetchAppointments = async (startDate, endDate) => {
     try {
       const res = await fetch(
-        `/api/user/appointments-admin?start=${startDate}&end=${endDate}`
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/user/appointments-admin?start=${startDate}&end=${endDate}`,
+        { method: "GET", credentials: "include" }
       );
       const data = await res.json();
       if (res.ok) {

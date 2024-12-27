@@ -7,7 +7,7 @@ const MyAppointment = () => {
 
   const fetchAppointments = async () => {
     try {
-      const res = await fetch(`/api/appointment/get-appointments`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/appointment/get-appointments`, {
         method: "GET",
         headers: {
           "Content-Type": "application/json",
@@ -28,7 +28,7 @@ const MyAppointment = () => {
 
   const cancelAppointment = async (appointmentId) => {
     try {
-      const res = await fetch(`/api/appointment/cancel-appointment`, {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/appointment/cancel-appointment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

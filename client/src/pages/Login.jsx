@@ -26,11 +26,15 @@ const Login = () => {
     }
     try {
       dispatch(logInStart());
-      const res = await fetch("/api/auth/login", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/auth/login`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(formData),
+          credentials: "include",
+        }
+      );
       const data = await res.json();
       if (data.success === false) {
         dispatch(logInFailure(data.message));
@@ -70,7 +74,11 @@ const Login = () => {
               onChange={handleChange}
               className="h-[30px] bg-white border border-black rounded"
             />
-            {errorMessage && <span className="text-red-600 bg-red-100 p-2">{errorMessage}</span>}
+            {errorMessage && (
+              <span className="text-red-600 bg-red-100 p-2">
+                {errorMessage}
+              </span>
+            )}
           </div>
           <div className="flex justify-end">
             <p className="text-sm font-medium hover:underline hover:underline-offset-2 cursor-pointer">
@@ -86,7 +94,6 @@ const Login = () => {
               {loading ? "Đang tải..." : "Đăng nhập"}
             </button>
             <OAuth />
-            
           </div>
           <div className="w-full flex justify-center">
             <p className="text-sm">

@@ -19,7 +19,10 @@ const UpdateService = () => {
     try {
       const fetchService = async () => {
         const res = await fetch(
-          `/api/service/getservices?serviceId=${serviceId}`
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/service/getservices?serviceId=${serviceId}`,
+          { method: "GET", credentials: "include" }
         );
         const data = await res.json();
         if (!res.ok) {
@@ -43,13 +46,16 @@ const UpdateService = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/service/updateservice/${serviceId}/${currentUser._id}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/service/updateservice/${serviceId}/${currentUser._id}`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
+          credentials: "include",
         }
       );
       const data = await res.json();

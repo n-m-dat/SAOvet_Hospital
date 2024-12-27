@@ -25,9 +25,12 @@ const DashSidebar = () => {
 
   const handleLogout = async () => {
     try {
-      const res = await fetch("api/user/logout", {
-        method: "POST",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/logout`,
+        {
+          method: "POST",
+        }
+      );
       const data = await res.json();
       if (!res.ok) {
         console.log(data.message);

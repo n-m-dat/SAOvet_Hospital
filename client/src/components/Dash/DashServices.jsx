@@ -18,7 +18,10 @@ const DashServices = () => {
     const fetchServices = async () => {
       try {
         const res = await fetch(
-          `/api/service/getservices?userId=${currentUser._id}`
+          `${import.meta.env.VITE_BACKEND_URL}/api/service/getservices?userId=${
+            currentUser._id
+          }`,
+          { method: "GET", credentials: "include" }
         );
         const data = await res.json();
         if (res.ok) {
@@ -38,9 +41,12 @@ const DashServices = () => {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/service/deleteservice/${serviceIdToDelete}/${currentUser._id}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/service/deleteservice/${serviceIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();

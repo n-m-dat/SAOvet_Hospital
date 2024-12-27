@@ -37,7 +37,7 @@ const ServiceDetail = () => {
     const fetchService = async () => {
       try {
         setLoading(true);
-        const res = await fetch(`/api/service/getservices?slug=${serviceSlug}`);
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/service/getservices?slug=${serviceSlug}`);
         const data = await res.json();
         if (!res.ok) {
           setError(true);
@@ -65,7 +65,7 @@ const ServiceDetail = () => {
   useEffect(() => {
     try {
       const fetchRecentServices = async () => {
-        const res = await fetch("/api/service/getservices");
+        const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/service/getservices`);
         const data = await res.json();
         if (res.ok) {
           setRecentServices(data.services);
@@ -139,7 +139,7 @@ const ServiceDetail = () => {
 
       const slotDate = `${day} / ${month} / ${year}`;
 
-      const res = await fetch("/api/appointment/book-appointment", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/appointment/book-appointment`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

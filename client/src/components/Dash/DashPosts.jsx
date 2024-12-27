@@ -17,7 +17,12 @@ const DashPosts = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const res = await fetch(`/api/post/getposts?userId=${currentUser._id}`);
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/post/getposts?userId=${
+            currentUser._id
+          }`,
+          { method: "GET", credentials: "include" }
+        );
         const data = await res.json();
         if (res.ok) {
           setUserPosts(data.posts);
@@ -36,9 +41,12 @@ const DashPosts = () => {
     setShowModal(false);
     try {
       const res = await fetch(
-        `/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
+        `${
+          import.meta.env.VITE_BACKEND_URL
+        }/api/post/deletepost/${postIdToDelete}/${currentUser._id}`,
         {
           method: "DELETE",
+          credentials: "include",
         }
       );
       const data = await res.json();
@@ -50,10 +58,10 @@ const DashPosts = () => {
         setFilteredPosts((prev) =>
           prev.filter((post) => post._id !== postIdToDelete)
         );
-        toast.success("Đã xóa bài viết")
+        toast.success("Đã xóa bài viết");
       } else {
         console.log(data.message);
-        toast.error("Xóa bài viết thất bại!")
+        toast.error("Xóa bài viết thất bại!");
       }
     } catch (error) {
       console.log(error.message);

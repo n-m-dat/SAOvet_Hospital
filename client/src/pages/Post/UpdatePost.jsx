@@ -28,7 +28,12 @@ const UpdatePost = () => {
   useEffect(() => {
     try {
       const fetchPost = async () => {
-        const res = await fetch(`/api/post/getposts?postId=${postId}`);
+        const res = await fetch(
+          `${
+            import.meta.env.VITE_BACKEND_URL
+          }/api/post/getposts?postId=${postId}`,
+          { method: "GET", credentials: "include" }
+        );
         const data = await res.json();
         if (!res.ok) {
           console.log(data.message);
@@ -89,13 +94,16 @@ const UpdatePost = () => {
     e.preventDefault();
     try {
       const res = await fetch(
-        `/api/post/updatepost/${postId}/${currentUser._id}`,
+        `${import.meta.env.VITE_BACKEND_URL}/api/post/updatepost/${postId}/${
+          currentUser._id
+        }`,
         {
           method: "PUT",
           headers: {
             "Content-Type": "application/json",
           },
           body: JSON.stringify(formData),
+          credentials: "include",
         }
       );
       const data = await res.json();

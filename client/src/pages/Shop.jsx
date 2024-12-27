@@ -56,7 +56,7 @@ const Shop = () => {
       setLoading(true);
       const searchQuery = urlParams.toString();
       const res = await fetch(
-        `/api/product/getproducts?${searchQuery}&limit=${limit}`
+        `${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?${searchQuery}&limit=${limit}`
       );
       if (!res.ok) {
         setLoading(false);
@@ -120,7 +120,7 @@ const Shop = () => {
     const urlParams = new URLSearchParams(location.search);
     urlParams.set("startIndex", startIndex);
     const searchQuery = urlParams.toString();
-    const res = await fetch(`/api/product/getproducts?${searchQuery}`);
+    const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/product/getproducts?${searchQuery}`);
     if (!res.ok) {
       return;
     }

@@ -93,12 +93,13 @@ const CreateProduct = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     try {
-      const res = await fetch("/api/product/create", {
+      const res = await fetch(`${import.meta.env.VITE_BACKEND_URL}/api/product/create`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify(formData),
+        credentials: "include",
       });
       const data = await res.json();
       if (!res.ok) {

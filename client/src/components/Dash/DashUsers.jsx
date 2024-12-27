@@ -16,7 +16,10 @@ const DashUsers = () => {
   useEffect(() => {
     const fetchUsers = async () => {
       try {
-        const res = await fetch(`/api/user/getusers`);
+        const res = await fetch(
+          `${import.meta.env.VITE_BACKEND_URL}/api/user/getusers`,
+          { method: "GET", credentials: "include" }
+        );
         const data = await res.json();
         if (res.ok) {
           setUsers(data.users);
@@ -33,9 +36,13 @@ const DashUsers = () => {
   const handleDeleteUser = async (id) => {
     setShowModal(false);
     try {
-      const res = await fetch(`/api/user/delete/${id}`, {
-        method: "DELETE",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/delete/${id}`,
+        {
+          method: "DELETE",
+          credentials: "include",
+        }
+      );
       const data = await res.json();
 
       if (res.ok) {
@@ -52,9 +59,13 @@ const DashUsers = () => {
 
   const handleBlockUser = async (id, isBlocked) => {
     try {
-      const res = await fetch(`/api/user/block/${id}`, {
-        method: "PUT",
-      });
+      const res = await fetch(
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/block/${id}`,
+        {
+          method: "PUT",
+          credentials: "include",
+        }
+      );
       const data = await res.json();
 
       if (res.ok) {
