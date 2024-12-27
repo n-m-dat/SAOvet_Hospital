@@ -12,7 +12,8 @@ const AdminAppointment = () => {
   const fetchAppointments = async () => {
     try {
       const res = await fetch(
-        `${import.meta.env.VITE_BACKEND_URL}/api/user/appointments-admin`
+        `${import.meta.env.VITE_BACKEND_URL}/api/user/appointments-admin`,
+        { method: "GET", credentials: "include" }
       );
       const data = await res.json();
       if (res.ok) {
@@ -49,6 +50,7 @@ const AdminAppointment = () => {
             "Content-Type": "application/json",
           },
           body: JSON.stringify({ appointmentId: selectedAppointmentId }),
+          credentials: "include",
         }
       );
       const data = await res.json();
